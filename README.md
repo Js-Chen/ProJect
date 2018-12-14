@@ -1,4 +1,4 @@
-# ithm
+# Vue-cli
 
 ## Project setup
 ```
