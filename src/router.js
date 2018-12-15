@@ -7,6 +7,7 @@ import message from"./components/tabbar/Info.vue"
 import settings from"./components/tabbar/Settings.vue"
 import shopcar from"./components/tabbar/Shopcar.vue"
 import newsinfo from"./components/news/newsInfo.vue"
+import newslist from "./components/news/newsList.vue"
 //把导入的vue-router注册到vue实例上
 Vue.use(VueRouter)
 var Router = new VueRouter({
@@ -17,6 +18,7 @@ var Router = new VueRouter({
         {path:'/settings',component:settings},
         {path:'/shopcar',component:shopcar},
         {path:'/home/newsinfo',component:newsinfo},
+        {path:'/home/newslist/:id',component:newslist},
     ],
     linkActiveClass:'mui-active'
 })
