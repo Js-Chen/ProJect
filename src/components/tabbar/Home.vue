@@ -1,54 +1,52 @@
 <template>
   <div class="home-box">
     <mt-swipe :auto="4000">
-      <mt-swipe-item>
-        <img src="../assets/images/muwu.jpg" alt>
-      </mt-swipe-item>
-      <mt-swipe-item>
-        <img src="../assets/images/shuijiao.jpg" alt>
-      </mt-swipe-item>
+        <mt-swipe-item v-for="item in list" :key="item.id">
+          <img :src="item.img" alt="">
+        </mt-swipe-item>
     </mt-swipe>
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <img src="../assets/images/menu1.png" alt="">
+        <router-link to="home/newsinfo">
+          <img src="../../assets/images/menu1.png" alt="">
           <div class="mui-media-body">Home</div>
-        </a>
+       </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-           <img src="../assets/images/menu2.png" alt="">
+        <router-link to="">
+           <img src="../../assets/images/menu2.png" alt="">
           <div class="mui-media-body">Email</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-           <img src="../assets/images/menu3.png" alt="">
+        <router-link to="">
+           <img src="../../assets/images/menu3.png" alt="">
           <div class="mui-media-body">Chat</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <img src="../assets/images/menu4.png" alt="">
+        <router-link to="">
+          <img src="../../assets/images/menu4.png" alt="">
           <div class="mui-media-body">location</div>
-        </a>
+         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <img src="../assets/images/menu5.png" alt="">
+        <router-link to="">
+          <img src="../../assets/images/menu5.png" alt="">
           <div class="mui-media-body">Search</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <img src="../assets/images/menu6.png" alt="">
+        <router-link to="">
+          <img src="../../assets/images/menu6.png" alt="">
           <div class="mui-media-body">Phone</div>
-        </a>
+       </router-link>
       </li>
     </ul>
   </div>
 </template>
 <script>
+
 export default {
   data(){
     return {
@@ -57,8 +55,10 @@ export default {
   },
   methods:{
     getData(){
-      this.$http.get("http://www.lovegf.cn:8899/api/getlunbo").then(res =>{
-        console.log(res.body);
+      this.$http.get("api/getlunbo").then(res =>{
+        if(res.body.status === 0){
+          this.list = res.body.message
+        }
       })
     }
   },
@@ -70,7 +70,7 @@ export default {
 <style lang="scss" scoped>
 .home-box {
  .mint-swipe{
-     height:30vh;
+     height:24vh;
      img {
     width: 100%;
   }
