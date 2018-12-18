@@ -8,9 +8,12 @@ import settings from"./components/tabbar/Settings.vue"
 import shopcar from"./components/tabbar/Shopcar.vue"
 import newsinfo from"./components/news/newsInfo.vue"
 import newslist from "./components/news/newsList.vue"
+import listcom from "./components/shop/listcom.vue"
+import storewide from "./components/img/storewide.vue"
+import imginfo from "./components/img/imginfo.vue"
 //把导入的vue-router注册到vue实例上
 Vue.use(VueRouter)
-var Router = new VueRouter({
+export default new VueRouter({
     routes:[
         {path:'/',redirect:'/home'},
         {path:'/home',component:home},
@@ -19,7 +22,9 @@ var Router = new VueRouter({
         {path:'/shopcar',component:shopcar},
         {path:'/home/newsinfo',component:newsinfo},
         {path:'/home/newslist/:id',component:newslist},
+        {path:'/home/listcom',component:listcom},
+        {path:'/home/storewide',component:storewide},
+        {path:'/home/imginfo/:id',component:imginfo},
     ],
     linkActiveClass:'mui-active'
 })
-export default Router

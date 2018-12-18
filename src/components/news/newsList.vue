@@ -37,7 +37,6 @@ export default {
 <style lang="scss">
 .list-box {
   padding: 0 10px;
-  padding-bottom: 50px;
   .timeBox {
     display: flex;
     font-size: 12px;
@@ -46,7 +45,7 @@ export default {
   .news-title {
     padding: 10px 0;
     font-size: 16px;
-    text-align: center;
+    text-align: left;
     color: red;
   }
   .content-box p{

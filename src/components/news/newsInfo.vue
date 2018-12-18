@@ -42,7 +42,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .news-box {
-  padding-bottom: 50px;
   .mui-ellipsis{
     font-size: 12px;
     display: flex;
