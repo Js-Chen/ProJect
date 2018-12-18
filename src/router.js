@@ -11,6 +11,7 @@ import newslist from "./components/news/newsList.vue"
 import listcom from "./components/shop/listcom.vue"
 import storewide from "./components/img/storewide.vue"
 import imginfo from "./components/img/imginfo.vue"
+import shopinfo from "./components/shop/shopinfo.vue"
 //把导入的vue-router注册到vue实例上
 Vue.use(VueRouter)
 export default new VueRouter({
@@ -25,6 +26,7 @@ export default new VueRouter({
         {path:'/home/listcom',component:listcom},
         {path:'/home/storewide',component:storewide},
         {path:'/home/imginfo/:id',component:imginfo},
+        {name:'shopinfo',path:'/shopinfo/:id',component:shopinfo},
     ],
     linkActiveClass:'mui-active'
 })

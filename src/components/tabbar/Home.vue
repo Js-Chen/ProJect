@@ -1,10 +1,7 @@
 <template>
   <div class="home-box">
-    <mt-swipe :auto="4000">
-        <mt-swipe-item v-for="item in list" :key="item.id">
-          <img :src="item.img" alt="">
-        </mt-swipe-item>
-    </mt-swipe>
+    <!-- swiper模块放置区 -->
+    <swiper :list="list"></swiper> <!--父组件向子组件传值用属性绑定方式传递  v-bind-->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="home/newsinfo">
@@ -46,7 +43,8 @@
   </div>
 </template>
 <script>
-
+// 导入swiper模块
+import swiper from "../common/swiper"
 export default {
   data(){
     return {
@@ -65,16 +63,13 @@ export default {
   created() {
     this.getData()
   },
+  components:{
+    swiper
+  }
 };
 </script>
 <style lang="scss" scoped>
 .home-box {
- .mint-swipe{
-     height:24vh;
-     img {
-    width: 100%;
-  }
- }
  .mui-grid-view.mui-grid-9 .mui-table-view-cell{
      border:none;
  }

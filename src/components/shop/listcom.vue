@@ -1,57 +1,50 @@
 <template>
   <div class="listcom-box">
-    <div class="goods-list">
-      <img src="https://i8.mifile.cn/b2c-mimall-media/62d3f3e0dc091041ee44c5f29e31c19b.png" alt>
-      <h2>小米（Mi）小米Note 16G双网通版</h2>
+    <div class="goods-list" v-for="item in shoplist" :key="item.id" @click="goInfo(item.id)">
+      <img :src="item.img_url" alt>
+      <!--犯错两次，src地址没有花括号，src属性v-bind-->
+      <h2>{{item.title}}</h2>
       <div class="goods-text">
         <p class="Price">
-          <span class="now">￥899</span>
+          <span class="now">￥{{item.sell_price}}</span>
           <span class="old">
-            <del>￥999</del>
+            <del>￥{{item.market_price}}</del>
           </span>
         </p>
         <p class="sell">
           <span>热卖中</span>
-          <span>剩余：60件</span>
+          <span>剩余：{{item.stock_quantity}}件</span>
         </p>
       </div>
     </div>
-    <div class="goods-list">
-      <img src="https://i8.mifile.cn/b2c-mimall-media/62d3f3e0dc091041ee44c5f29e31c19b.png" alt>
-      <h2>小米（Mi）小米Note 16G双网通版</h2>
-      <div class="goods-text">
-        <p class="Price">
-          <span class="now">￥899</span>
-          <span class="old">
-            <del>￥999</del>
-          </span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩余：60件</span>
-        </p>
-      </div>
-    </div>
-    <div class="goods-list">
-      <img src="https://i8.mifile.cn/b2c-mimall-media/62d3f3e0dc091041ee44c5f29e31c19b.png" alt>
-      <h2>小米（Mi）小米Note 16G双网通版</h2>
-      <div class="goods-text">
-        <p class="Price">
-          <span class="now">￥899</span>
-          <span class="old">
-            <del>￥999</del>
-          </span>
-        </p>
-        <p class="sell">
-          <span>热卖中</span>
-          <span>剩余：60件</span>
-        </p>
-      </div>
-    </div>
+    <mt-button type="danger" plain size="large" @click="getmore">加载更多</mt-button>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      index: 1,
+      shoplist: []
+    };
+  },
+  methods: {
+    getshoplist() {
+      this.$http.get("api/getgoods?pageindex=" + this.index).then(res => {
+        this.shoplist = this.shoplist.concat(res.body.message);
+      });
+    },
+    getmore() {
+      (this.index += 1), this.getshoplist();
+    },
+    goInfo(id) {
+      this.$router.push({name:'shopinfo',params:{id:id}})
+    }
+  },
+  created() {
+    this.getshoplist();
+  }
+};
 </script>
 <style lang="scss" scoped>
 .listcom-box {
@@ -65,6 +58,10 @@ export default {};
     padding: 2px;
     margin: 5px 0;
     box-shadow: 0 0 5px #ccc;
+    justify-content: space-between; //元素对齐
+    min-height: 293px;
+    display: flex;
+    flex-direction: column; //纵向排列
     h2 {
       font-size: 14px;
       font-weight: 500;
