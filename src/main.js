@@ -9,6 +9,7 @@ import "mint-ui/lib/style.css"
 import router from "./router"
 //导入vue-resource处理XmlHttprequest
 import resource from "vue-resource"
+//导入图片预览缩略图
 import VuePreview from 'vue-preview'
 //导入bootstarp样式
 import "./assets/mui/css/mui.min.css"
